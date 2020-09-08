@@ -1,13 +1,18 @@
-var app = new Vue({
-    el:'#app',
+var app3 = new Vue({
+    el:'#app-3',
     data:{
-        message:'hola mundo, ejemplos de Vue.js desde la documentacion oficial'
+        seen:true
     }
 })
 
-var app2 = new  Vue({
-    el: '#app-2',
+var app4 = new Vue({
+    el: '#app-4',
     data:{
-        message: 'usted cargo esta pagina el ' + new Date().toLocaleString()
+        todos:[
+            {text:'javascript'},
+            {text:'Vue'},
+            {text:'construir algo increible'}
+        ]
     }
 })
+

@@ -9,16 +9,18 @@
 </head>
 <body>
 
-    <div id="app">
-        {{message}}
+    <div id="app-3">
+        <span v-if="seen">Ahora me ves</span>
     </div>
 
-    <div id="app-2">
-        <span v-bind:title="message">
-            Mueva el mouse sobre mi durante unos segundo para ver mi titulo enlazado dinamicamente.
-        </span>
+    <div id="app-4">
+        <ol>
+            <li v-for="todo in todos">
+                {{todo.text}}
+            </li>
+        </ol>
     </div>
-    
+
     <script type="text/javascript" src="/js/vue1.js"></script>
 </body>
 </html>
