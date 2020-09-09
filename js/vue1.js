@@ -1,7 +1,15 @@
-/*Creando una instancia de Vue
-por convencion, se suele usar la variable vm (viewModel abreviacion)
+/* Hooks del ciclo de vida de la instancia 
+created,
+mounted,
+updated,
+destroyed
 */
 
 var vm = new Vue({
-    //opciones
+    data: {
+        a:1
+    },
+    created: function(){
+        console.log('a es: ' + this.a)
+    }
 })
