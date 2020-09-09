@@ -7,15 +7,18 @@
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     
 </head>
-<body>    
-    <div id="app-7">
-        <ol>
-            <todo-item
-                v-for="item in groceryList"
-                v-bind:todo="item"
-                v-bind:key="item.id">
-            </todo-item>
-        </ol>    
+<body>  
+    <div id="app-8">
+        <h3>{{data}}</h3>
+    </div>
+
+    <div id="app">
+        <p>{{ foo }}</p>
+        <button v-on:click="foo = 'baz'">Cambialo</button>
+    </div>
+
+    <div id="example">
+        hola div example
     </div>
 
     <script type="text/javascript" src="/js/vue1.js"></script>
