@@ -8,52 +8,13 @@
     
 </head>
 <body>
-    <h3>
-        interpolaciones
-    </h3>
-          
-    <div id="texto">
-        {{mensaje}}
-        <br>
-        <input type="text" v-model="mensaje">
-        <br>
-        <span v-once> Esto nunca cambiara: {{mensaje}}</span>
-    </div>
+    
+    <h3>Propiedad computada</h3>
 
-    <div id="htmlPuro">
-        <p>Using mustaches: {{rawHtml}}</p>
-        <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+    <div id="example">
+        <p>Mensaje original: "{{ message }}"</p>
+        <p>Mensaje invertido computado: "{{ reversedMessage }}"</p>
     </div>
-
-    <div id="atributos">
-        <div v-bind:id="dynamicId"></div>
-        <button v-bind:disabled="isButtonDisabled">Button</button>
-    </div>
-
-    <div id="expresionesJS">
-        {{ number + 1 }}
-        <br>
-        {{ ok ? 'yes' : 'no' }}
-        <br>
-        {{ message.split('').reverse().join('') }}
-    </div>
-
-    <div id="directivas">
-        <p v-if="seen">Now you see me</p>
-    </div>
-
-    <div id="argumentos">
-        <a v-bind:href="url" target="_blank">en1</a>
-        <br>
-        <a v-on:click="doSomething">Click</a>
-    </div>
-
-    <div id="modificadores">
-        <form v-on:submit.prevent="onSubmit">
-            <button>Modificadores</button>
-        </form>
-    </div>
-
 
     <script type="text/javascript" src="/js/vue1.js"></script>
 </body>
