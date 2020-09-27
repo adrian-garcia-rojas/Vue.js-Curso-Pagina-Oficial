@@ -4,40 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curso de Vue.js pagina oficial</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        .active{
+          color:black;
+          font-size: 35px;  
+        }
+        .foo, .bar{
+            color: purple;
+        }
+    </style>
     
 </head>
 <body>
     
-    <h3>Ejemplo basico de propiedades computadas</h3>
-    <div id="app">
-        <p>Mensaje Invertido: "{{ reversedMessage() }}"</p>
-
-        <br>
-        <h3>#Caching computado vs metodos,<br> recordar la regla del metodo y la propiedad computada (cache)</h3>
-        <p>Fecha actual {{ now }}</p>        
-    </div>
-
-    <div id="demo">
-        <h3># Propiedad computada vs Watched<br>(aun es mejor utilizar propiedades computadas, segun sea el caso de uso)</h3>
-        {{fullName}}
-    </div>
-
-    <div id="setterComputado">
-        <h3>#Setter computado</h3>
-        <p>las propiedadades computadas son, de forma predeterminada solo GET, pero tambien puede proporcionar un SET  ciando lo necesite</p>
-        {{fullName2}}
-    </div>
+    <h4>#Sintaxis de Objeto</h4>
+    <div id="sintaxis" class="static" v-bind:class="{ active: isActive, 'text-danger':hasError }"></div>
+    <h4>Sintaxis de objeto 2</h4>
+    <div id="sintaxis2" v-bind:class="classObject"></div>
+    <!--Esto renderizará el mismo resultado. También podemos enlazar una propiedad computada que retorna un objeto. Esto es un patrón común y poderoso:-->
+    <div id="sintaxis3Pcomputada" v-bind:class="classObject">fatal</div>
     
-    <div id="watch-example">
-        <h3>Watchers</h3>
-        <p>Es por eso que Vue proporciona una forma más genérica de reaccionar a los cambios de datos a través de la opción watch. Esto es más útil cuando desea realizar operaciones asíncronas o costosas en respuesta al cambio de datos.</p>
-        <p>
-            Haz una pregunta de sí/no:
-            <input v-model="question">
-        </p>
-        <p>{{answer}}</p>
-    <div>
+    <p>#Sintaxis de Array</p>
+    <div id="sintaxisDeArray" v-bind:class="[activeClass, errorClass]">string</div>    
+    <div id="sintaxisDeArrayTernario" v-bind:class="[isActive ? activeClass : '', errorClass]">sintaxisDeArrayTernario</div>    
+    <div id="sintaxisDeArrayObject" v-bind:class="[{ active: isActive}, errorClass]">sintaxisDeArrayObject</div>
+
+    <p># Con Component</p>
+    <div id="conComponent">
+        <my-component class="baz boo"></my-component>
+    </div>
+    <div id="conComponent2">
+        <my-component2 v-bind:class="{ active: isActive }"></my-component2>
+    </div>
+
         
     
     <!-- Dado que ya existe un rico ecosistema de bibliotecas ajax         -->
