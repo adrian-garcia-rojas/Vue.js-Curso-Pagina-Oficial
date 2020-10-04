@@ -9,22 +9,68 @@
         
 </head>
 <body>
-    
-    <h4>### ENLACES DE ESTILOS EN LINEA ###</h4>
-    <P>sintaxis de objeto</P>
-    <div id="sintaxisDeObjecto" v-bind:style="{ color: activeColor, fontSize: fontSize + 'px'}">
-        Enlace de estilos en linea, sintaxis de objeto
-    </div>
-    <div id="sintaxisDeObjetoMasObjectoDeEstilos" v-bind:style="styleObject">
-        Estilos por objeto
+    <p># v-if</p>
+    <div id="vif">
+        <h1 v-if="ok">Si</h1>
+        <h1 v-else>NO</h1>
     </div>
 
-    <p>Sintaxis de arreglo</p>
-    <div id="sintaxisDeArreglo" v-bind:style="[baseStyle, overridingStyles]">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit ex consequuntur sed saepe. Ut officia autem consequatur minus, doloribus provident iure ad cupiditate eligendi animi. Voluptate eligendi quisquam facere sit.
+    <br>
+    <p># Grupos Condicionales con v-if en "< template > "</p>    
+    <div id="templete-vif">
+        <template v-if="ok">
+            <h1>Título</h1>
+            <p>Párrafo 1</p>
+            <p>Párrafo 2</p>
+          </template>
     </div>
 
+    <br>
+    <p># V-else</p>
+    <div id="math"> 
+        <div v-if="Math.random() > 0.5">
+        Ahora me ves
+        </div>
+        <div v-else>
+        Ahora no
+        </div>
+    </div>
     
+    <br>
+    <p># v-else-if -> apartir de la version 2.10+</p>
+    <div id="vElseIf">
+        <div v-if="type === 'A'">
+        A
+        </div>
+        <div v-else-if="type === 'B'">
+        B
+        </div>
+        <div v-else-if="type === 'C'">
+        C
+        </div>
+        <div v-else>
+        Si no es A, B o C
+        </div>
+    </div>
+
+    <br>
+    <p># controlando elementos reutilizables con key</p>
+    <div id="controlandoElementosReutilizablesConKey">
+        <templete v-if="loginType === 'username'">
+            <label>Nombre de usuario</label>
+            <input placeholder="Ingrese su nombre de usuario">
+        </templete>
+        <template v-else>
+            <label>Email</label>
+            <input placeholder="Ingrese su email">
+        </template>
+        <br><br>
+        <input type="text" id="" v-model="textIn">
+        <button v-on:click="cambia">Cambiar</button>
+
+    </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
     <script type="text/javascript" src="/js/vue1.js"></script>
