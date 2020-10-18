@@ -6,69 +6,194 @@
     <title>Curso de Vue.js pagina oficial</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <style>
+        .divider{
+            padding-bottom: 10px;
+            list-style: none;
+            background-color:white;
+        }
+    </style>
         
 </head>
 <body>
-    <p># v-if</p>
-    <div id="vif">
-        <h1 v-if="ok">Si</h1>
-        <h1 v-else>NO</h1>
+    
+    <h3>Renderizado de lista</h3>
+    <h4>#Mapeado de una matriz a elementos con v-for</h4>
+    <div id="mapeadoDeUnaMatriz">
+        <ul id="example1">
+            <li v-for="item in items">
+                {{ item.mensaje }}
+            </li>
+        </ul>        
+    </div>
+
+    <p>Ejemplo 2</p>
+    <ul id="example2">
+        <li v-for="(item, index) in items">
+            {{ mensajePadre }} - {{ index }} - {{ item.mensaje}}
+        </li>
+    </ul>
+    
+    <h4># v-for con un Objeto</h4>
+    <ul id="v-for-object" class="demo">
+        <li v-for="value in object">
+            {{ value }}
+        </li>
+    </ul>
+    
+    <p>Ejemplo 2, v-for con un objeto</p>
+    <div id="v-for-object-value-key">
+        <ul id="v-for-object-value-key">
+            <li v-for="(value, key) in object">
+                {{key}}. {{value}}
+            </li>
+        </ul>
+    </div>
+
+    <p>Ejemplo 3, Y otro para el indice</p>
+    <div id="v-for-object-index-value-key">
+        <ul id="v-for-object-index-value-key">
+            <li v-for="(value, key, index) in object">
+                {{ index }}. {{ key }}: {{value}}
+            </li>
+        </ul>
+    </div>
+
+    <h4># key</h4>
+    <div id="key">
+        <ul>
+            <li v-for="item in items" :key="item.id">
+                {{ item.id }} : {{ item.nombre }}
+            </li>
+        </ul>
+    </div>
+
+    <h4>Deteccion de cambios en Array</h4>
+    <p># Metodos de Mutacion</p>    
+    <p>
+        Vue envuelve los métodos de mutación de una matriz observada para que también activen las actualizaciones de vista. Los métodos envueltos son:
+        <br><br>
+        push() <br>
+        pop() <br>
+        shift() <br>
+        unshift() <br>
+        splice() <br>
+        sort() <br>
+        reverse() <br>
+        <br>
+        Puede abrir la consola y probar con la matriz de items de los ejemplos anteriores llamando a sus métodos de mutación. Por ejemplo: example1.items.push ({mensaje: 'Baz'}).
+    </p>
+    
+    <p># Mutando un Array</p>
+    <div id="mutandoArray">
+        <ul>
+            <li v-for="item in items">
+                {{ item.mensaje }}
+            </li>
+        </ul>
+
+        <p>
+            Ejemplo que se debe de ejecutar en consola:
+            <br><br>
+
+            example1.items = example1.items.filter(function (item) {
+                return item.mensaje.match(/Foo/)
+              })
+
+            <br><br>
+            Podría pensar que esto hará que Vue elimine el DOM existente y vuelva a renderizar la lista completa; afortunadamente, ese no es el caso. Vue implementa algunas heurísticas inteligentes para maximizar la reutilización de elementos DOM, por lo tanto, reemplazar una matriz con otra matriz que contenga objetos superpuestos es una operación muy eficiente.
+        </p>
+    </div>
+
+    <p># Advertencias</p>
+    <div id="advertencias">
+        <p>esta en consola</p>
+    </div>
+
+    <p># Advertencias con la Deteccion de Cambios en Objetos</p>
+    <p>Una vez más, debido a las limitaciones del JavaScript moderno, Vue no puede detectar la adición o eliminación de propiedades. Por ejemplo:</p>
+    <p>Ver la documentacion, esta seccion esta en la consola de js....</p>
+
+    <br>
+    <br>
+    <p># Mostrando Resultados Filtrados/Ordenados</p>
+    <div id="mostrarResultadosFiltradosOrdenados">
+        <li v-for="n in numerosImpares">{{n}}</li>
+    </div>
+    <br>
+    <p>En situaciones donde las propiedades computadas no son factibles (por ejemplo, dentro de los bucles v-for anidados), puede usar un método:</p>
+    <div id="mostrarResultadosFiltradosOrdenadosNoFactibleFor">
+        <li v-for="n in even(numeros)">{{ n }}</li>
     </div>
 
     <br>
-    <p># Grupos Condicionales con v-if en "< template > "</p>    
-    <div id="templete-vif">
-        <template v-if="ok">
-            <h1>Título</h1>
-            <p>Párrafo 1</p>
-            <p>Párrafo 2</p>
-          </template>
+    <br>
+    <p># v-for con un Rango</p>
+    <div id="vforConRango">
+        <span v-for="n in 10">{{ n }}</span>
     </div>
 
-    <br>
-    <p># V-else</p>
-    <div id="math"> 
-        <div v-if="Math.random() > 0.5">
-        Ahora me ves
-        </div>
-        <div v-else>
-        Ahora no
-        </div>
+    <br><br>
+    <p># v-for en un < templete ></p>
+    <div id="vforEnUnTemplete">
+        <ul>
+            <template v-for="item in items">
+                <li>{{ item.msg }}</li>
+                <li class="divider" role="presentation"></li>
+            </template>
+        </ul>
     </div>
     
-    <br>
-    <p># v-else-if -> apartir de la version 2.10+</p>
-    <div id="vElseIf">
-        <div v-if="type === 'A'">
-        A
-        </div>
-        <div v-else-if="type === 'B'">
-        B
-        </div>
-        <div v-else-if="type === 'C'">
-        C
-        </div>
-        <div v-else>
-        Si no es A, B o C
-        </div>
-    </div>
+    <br><br>
+    <p># v-for con  v-if -> v-for tiene prioridad mas alta</p>
+    <div id="vForConvIf">
+        <ul>
+            <li v-for="todo in todos" v-if="!todo.isComplete">
+                {{ todo }}
+            </li>
+        </ul>
+        <p>Lo anteriro hace que todos los que no esten completos se rendericen</p>
 
-    <br>
-    <p># controlando elementos reutilizables con key</p>
-    <div id="controlandoElementosReutilizablesConKey">
-        <templete v-if="loginType === 'username'">
-            <label>Nombre de usuario</label>
-            <input placeholder="Ingrese su nombre de usuario">
-        </templete>
-        <template v-else>
-            <label>Email</label>
-            <input placeholder="Ingrese su email">
-        </template>
         <br><br>
-        <input type="text" id="" v-model="textIn">
-        <button v-on:click="cambia">Cambiar</button>
-
+        <p>Si por el contrario su intencion es omitir condicionalmente la ejecucion del bucle, puede colocar el v-if en un elemento en envoltura o template ej:</p>
+        <ul v-if="todos.length">
+            <li v-for="todo in todos">
+                {{ todo }}
+            </li>
+        </ul>
+        <p v-else>NO quedan todos!</p>
     </div>
+
+    <br><br>
+    <p># v-for con un componente</p>
+    <div id="vForComponentDiv">
+        <vForComponent></vForComponent>
+    </div>    
+    <p>en 2.2.0 cuando se usa v-for con un componente, ahora se requiere una key</p>
+    <br><br>
+    <p>/**Aqui un ejemplo completo de una lista de tareas simples */</p>
+    <div id="listaDeTareasSimple">
+        <form v-on:submit.prevent="addNewTodo">
+            <label for="new-todo">Agregar tarea</label>
+            <input 
+                v-model="newTodoText" 
+                id="new-todo" 
+                placeholder="E.j  Alimentar al gato"
+            >
+            <button>Agregar</button>
+        </form>
+        <ul>
+            <li
+            is="todo-item"
+            v-for="(todo, index) in todos"
+            v-bind:key="todo.id"
+            v-bind:title="todo.title"
+            v-on:remove="todos.splice(index, 1)">
+            </li>
+        </ul>
+    </div>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
